@@ -1,0 +1,11 @@
+{
+    "name": "soulpay/mercury_sdk",
+    "description": "A sdk for mercury api",
+    "authors": [
+        {
+            "name": "magnuspedro",
+            "email": "pedmagnus@gmail.com"
+        }
+    ],
+    "require": {}
+}
