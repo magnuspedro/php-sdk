@@ -87,3 +87,4 @@ echo ('<pre>' . $request->send($creditCardTransaction->toJson()) . '</pre>');
 // echo ('<h3> "creditCard": ' . $creditCard->toJson() . '<h3>');
 // echo ('<h3> "payment": ' . $payment->toJson() . '<h3>');
 // echo ('<h3> "CREDIT": ' . $creditInstallment->toJson() . '<h3>');
+?>
