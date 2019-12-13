@@ -2,7 +2,7 @@
 
 require_once 'Request.php';
 
-abstract class Login extends Request
+class LoginRequest extends Request
 {
 
     

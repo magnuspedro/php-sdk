@@ -2,7 +2,7 @@
 
 require_once 'TokenRefreshRequest.php';
 
-class Token extends TokenRefreshRequest
+class TokenRequest extends TokenRefreshRequest
 {
 
     private $jwt;
