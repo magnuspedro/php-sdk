@@ -1,12 +1,26 @@
 <?php
 
-class CreditCardTransaction
+class CreditCardTransaction implements JsonSerializable
 {
     private $customer;
     private $billing;
     private $shipping;
     private $creditCard;
     private $payment;
+
+
+    public function jsonSerialize()
+    {
+        $vars = array_filter(
+            get_object_vars($this),
+            function ($item) {
+                // Keep only not-NULL values
+                return !is_null($item);
+            }
+        );
+
+        return $vars;
+    }
 
     /**
      * Get the value of payment
@@ -106,19 +120,5 @@ class CreditCardTransaction
         $this->customer = $customer;
 
         return $this;
-    }
-
-    public function toJson()
-    {
-        /// export the variable to find the privates
-        $exp = var_export($this, true);
-        /// get rid of the __set_state that only works 5.1+
-        $exp = preg_replace('/[a-z0-9_]+\:\:__set_state\(/i', '((object)', $exp);
-        /// rebuild the object
-        eval('$enc = json_encode(array_filter((array) get_object_vars(' . $exp . '), function($val) {
-            return !empty($val);
-        }));');
-        /// return the encoded value
-        return $enc;
     }
 }

@@ -9,10 +9,4 @@ abstract class Request
         $this->url = $url;
     }
 
-    public function send()
-    {}
-
-    public function get()
-    {}
-
 }

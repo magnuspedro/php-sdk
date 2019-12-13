@@ -21,7 +21,7 @@
 
     $customer = new Customer();
 
-    $customer->setName('Pedrinho cocô na cama');
+    $customer->setName('Victor');
     $customer->setTaxId('64532787693');
 
     $bankSlip = new BankSlip();
@@ -43,6 +43,7 @@
     $bankSlipRequest = new BankSlipRequest('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjMsImlhdCI6MTU3NjA3Mzc0MiwiZXhwIjoxNTc4NjY1NzQyfQ.45tr4BlNhzRQQc1nLw9C6kUqMpwS1WxdYptSIBmHtE4');
 
     echo ('<h1>Object<h1>');
-    echo('<pre>' . $bankSlipTransaction->toJson() . '</pre>');
-    echo ('<pre>' . $bankSlipRequest->send($bankSlipTransaction->toJson()) . '</pre>');
+    echo('<pre>' . json_encode($bankSlipTransaction) . '</pre>');
+    // echo ('<pre>' . $bankSlipRequest->send(json_encode($bankSlipTransaction)) . '</pre>');
+    echo ('<pre>' . $bankSlipRequest->get(251) . '</pre>');
 ?>

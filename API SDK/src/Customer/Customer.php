@@ -1,6 +1,6 @@
 <?php
 
-class Customer
+class Customer implements JsonSerializable
 {
     private $id;
     private $name;
@@ -13,6 +13,19 @@ class Customer
     private $new;
     private $vip;
     private $taxId;
+
+    public function jsonSerialize()
+    {
+        $vars = array_filter(
+            get_object_vars($this),
+            function ($item) {
+                // Keep only not-NULL values
+                return !is_null($item);
+            }
+        );
+
+        return $vars;
+    }
 
     /**
      * Get the value of new
@@ -232,12 +245,5 @@ class Customer
         $this->taxId = $taxId;
 
         return $this;
-    }
-
-    public function toJson()
-    {
-        return json_encode(array_filter((array) get_object_vars($this), function($val) {
-            return !empty($val);
-        }));
     }
 }

@@ -1,12 +1,12 @@
 <?php
 
-require_once 'TransactionRequest.php';
+require_once 'TokenRefreshRequest.php';
 
-class BankSlipRequest extends TransactionRequest
+class RefreshTokenRequest extends TokenRefreshRequest
 {
 
     private $jwt;
-    private $url = "https://dev-api.portalsoulpay.com.br/api/v1/bankSlip";
+    private $url = "https://dev-api.portalsoulpay.com.br/api/v1/auth/new-refresh-token";
 
     public function __construct($jwt)
     {
@@ -17,4 +17,5 @@ class BankSlipRequest extends TransactionRequest
     {
         return json_encode(parent::send($data));
     }
+
 }

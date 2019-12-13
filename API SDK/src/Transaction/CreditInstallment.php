@@ -1,9 +1,22 @@
 <?php
 
-class CreditInstallment
+class CreditInstallment implements JsonSerializable
 {
     private $numberOfInstallments;
     private $chargeInterest;
+
+    public function jsonSerialize()
+    {
+        $vars = array_filter(
+            get_object_vars($this),
+            function ($item) {
+                // Keep only not-NULL values
+                return !is_null($item);
+            }
+        );
+
+        return $vars;
+    }
 
     /**
      * Get the value of numberOfInstallments
@@ -43,12 +56,5 @@ class CreditInstallment
         $this->chargeInterest = $chargeInterest;
 
         return $this;
-    }
-
-    public function toJson()
-    {
-        return json_encode(array_filter((array) get_object_vars($this), function ($val) {
-            return !empty($val);
-        }));
     }
 }

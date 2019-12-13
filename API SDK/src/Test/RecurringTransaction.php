@@ -6,8 +6,9 @@ require_once '../CreditCard.php';
 require_once '../Payment.php';
 require_once '../Customer.php';
 require_once '../CreditInstallment.php';
-require_once '../Request/CreditCardRequest.php';
-require_once '../CreditCardTransaction.php';
+require_once '../Request/RecurringRequest.php';
+require_once '../RecurringTransaction.php';
+require_once '../Recurring.php';
 
 $customer = new Customer();
 $customer->setId('1');
@@ -66,26 +67,32 @@ $payment->setChargeTotal(120.10);
 $payment->setCurrencyCode('BRL');
 $payment->setCreditInstallment($creditInstallment);
 
-$creditCardTransaction = new CreditCardTransaction();
-//
-$creditCardTransaction->setCustomer($customer);
-$creditCardTransaction->setBilling($billing);
-$creditCardTransaction->setShipping($shipping);
-$creditCardTransaction->setCreditCard($creditCard);
-$creditCardTransaction->setPayment($payment);
+$recurring = new Recurring();
 
-$request = new CreditCardRequest('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTU3NTkwMzEyOSwiZXhwIjoxNTc4NDk1MTI5fQ.c0g6ynTtZHFSU3qh4bJWy-jea0VnKE4hGBTAs_uhNjY');
+$recurring->setStartDate('2030-01-10');
+$recurring->setPeriod('monthly');
+$recurring->setFrequency('1');
+$recurring->setInstallments('12');
+$recurring->setFirstAmount(22.00);
+$recurring->setFailureThreshold(15);
+
+$recurringTransaction = new RecurringTransaction();
+
+$recurringTransaction->setCustomer($customer);
+$recurringTransaction->setBilling($billing);
+$recurringTransaction->setShipping($shipping);
+$recurringTransaction->setCreditCard($creditCard);
+$recurringTransaction->setPayment($payment);
+$recurringTransaction->setRecurring($recurring);
+
+$request = new RecurringRequest('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTU3NTkwMzEyOSwiZXhwIjoxNTc4NDk1MTI5fQ.c0g6ynTtZHFSU3qh4bJWy-jea0VnKE4hGBTAs_uhNjY');
 
 echo ('<h1>Object<h1>');
-echo ('<pre>' . json_encode($creditCardTransaction) . '</pre>');
-
-// echo ('<pre>' . $request->send(json_encode($creditCardTransaction)) . '</pre>');
-
-echo ('<pre>' . $request->get(250) . '</pre>');
-
-// echo ('<h3> "customer": ' . $customer->toJson() . ',<h3>');
-// echo ('<h3> "shipping": ' . $shipping->toJson() . ',<h3>');
-// echo ('<h3> "billing": ' . $billing->toJson() . '<h3>');
-// echo ('<h3> "creditCard": ' . $creditCard->toJson() . '<h3>');
-// echo ('<h3> "payment": ' . $payment->toJson() . '<h3>');
-// echo ('<h3> "CREDIT": ' . $creditInstallment->toJson() . '<h3>');
+echo ('<h2>');
+print_r(json_encode($recurringTransaction));
+echo ('</h2>');
+echo ('<br>');
+echo ('<h2>');
+// echo($request->send(json_encode($recurringTransaction)));
+echo($request->get(253));
+echo ('</h2>');

@@ -1,6 +1,6 @@
 <?php
 
-class Recurring
+class Recurring implements JsonSerializable
 {
     private $startDate;
     private $period;
@@ -8,6 +8,19 @@ class Recurring
     private $installments;
     private $firstAmount;
     private $failureThreshold;
+
+    public function jsonSerialize()
+    {
+        $vars = array_filter(
+            get_object_vars($this),
+            function ($item) {
+                // Keep only not-NULL values
+                return !is_null($item);
+            }
+        );
+
+        return $vars;
+    }
 
     /**
      * Get the value of startDate
@@ -127,12 +140,5 @@ class Recurring
         $this->failureThreshold = $failureThreshold;
 
         return $this;
-    }
-
-    public function toJson()
-    {
-        return json_encode(array_filter((array) get_object_vars($this), function($val) {
-            return !empty($val);
-        }));
     }
 }

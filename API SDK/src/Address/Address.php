@@ -1,6 +1,6 @@
 <?php
 
-abstract class Address
+abstract class Address implements JsonSerializable
 {
     private $name;
     private $address;
@@ -12,6 +12,20 @@ abstract class Address
     private $country;
     private $phone;
     private $email;
+
+
+    public function jsonSerialize()
+    {
+        $vars = array_filter(
+            get_object_vars($this),
+            function ($item) {
+                // Keep only not-NULL values
+                return ! is_null($item);
+            }
+        );
+    
+        return $vars;
+    }
 
     /**
      * Get the value of name
@@ -212,12 +226,4 @@ abstract class Address
 
         return $this;
     }
-
-    public function toJson()
-    {
-        return json_encode(array_filter((array) get_object_vars($this), function($val) {
-            return !empty($val);
-        }));
-    }
-    
 }
