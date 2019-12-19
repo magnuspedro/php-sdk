@@ -2,12 +2,12 @@
 
 require_once '../Address/Billing.php';
 require_once '../Address/Shipping.php';
-require_once '../CreditCard.php';
-require_once '../Payment.php';
-require_once '../Customer.php';
-require_once '../CreditInstallment.php';
+require_once '../Transaction/CreditCard.php';
+require_once '../Transaction/Payment.php';
+require_once '../Customer/Customer.php';
+require_once '../Transaction/CreditInstallment.php';
 require_once '../Request/CreditCardRequest.php';
-require_once '../CreditCardTransaction.php';
+require_once '../Transaction/CreditCardTransaction.php';
 
 $customer = new Customer();
 $customer->setId('1');
@@ -79,9 +79,9 @@ $request = new CreditCardRequest('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiO
 echo ('<h1>Object<h1>');
 echo ('<pre>' . json_encode($creditCardTransaction) . '</pre>');
 
-// echo ('<pre>' . $request->send(json_encode($creditCardTransaction)) . '</pre>');
+echo ('<pre>' . $request->send(json_encode($creditCardTransaction)) . '</pre>');
 
-echo ('<pre>' . $request->get(250) . '</pre>');
+// echo ('<pre>' . $request->get(250) . '</pre>');
 
 // echo ('<h3> "customer": ' . $customer->toJson() . ',<h3>');
 // echo ('<h3> "shipping": ' . $shipping->toJson() . ',<h3>');

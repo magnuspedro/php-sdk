@@ -27,7 +27,10 @@ abstract class TransactionRequest extends Request
             curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "GET");
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
             $result = curl_exec($curl);
-            return $result;
+            $httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+            $return['httpCode'] = $httpcode;
+            $return['response'] = $result;
+            return $return;
         } catch (Exception $e) {
 
         }
@@ -43,7 +46,10 @@ abstract class TransactionRequest extends Request
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
             $result = curl_exec($curl);
-            return $result;
+            $httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+            $return['httpCode'] = $httpcode;
+            $return['response'] = $result;
+            return $return;
         } catch (Exception $e) {
         }
     }
