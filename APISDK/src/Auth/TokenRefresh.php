@@ -1,6 +1,6 @@
 <?php
 
-class RefreshToken implements JsonSerializable
+class TokenRefresh implements JsonSerializable
 {
     private $refreshToken;
 
