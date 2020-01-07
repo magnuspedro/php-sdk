@@ -1,5 +1,5 @@
 {
-    "name": "soulpay/mercury_sdk",
+    "name": "soulpay",
     "description": "A sdk for mercury api",
     "keywords": ["sdk","soulpay","php","api","php-sdk"],
     "authors": [
