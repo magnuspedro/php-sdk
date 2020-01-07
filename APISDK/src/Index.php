@@ -11,5 +11,5 @@
     require_once 'Request/RecurringRequest.php';
     require_once 'Request/RefreshTokenRequest.php';
     require_once 'Request/TokenRequest.php';
-    require_once 'TransactionRequest.php';
+    require_once 'Request/TransactionRequest.php';
 ?>
