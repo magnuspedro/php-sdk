@@ -1,11 +1,27 @@
 {
     "name": "soulpay/mercury_sdk",
     "description": "A sdk for mercury api",
+    "keywords": ["sdk","soulpay","php","api","php-sdk"],
     "authors": [
         {
             "name": "magnuspedro",
             "email": "pedmagnus@gmail.com"
         }
     ],
-    "require": {}
+    "type": "library",
+    "license": "MIT",
+    "homepage": "https://github.com/Soulpay/php-sdk",
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.4.0"
+    },
+    "support": {
+        "issues": "https://github.com/Soulpay/php-sdk/issues",
+        "source": "https://github.com/Soulpay/php-sdk"
+    },
+    "autoload": {
+        "psr-0": {
+            "IsOdd": "src/index.php"
+        }
+    }
 }
