@@ -7,10 +7,9 @@ class LoginRequest extends Request
 
     
 
-    public function __construct()
+    public function __construct($isProduction = true)
     {
-        $this->url = 'https://dev-api.portalsoulpay.com.br/api/v1/auth/login';
-        parent::__construct($this->url);
+        parent::__construct("auth/login",$isProduction);
     }
 
     public function send($data)

@@ -4,12 +4,10 @@ require_once 'TransactionRequest.php';
 
 class RecurringRequest extends TransactionRequest
 {
-    private $jwt;
-    private $url = "https://dev-api.portalsoulpay.com.br/api/v1/recurrence";
 
-    public function __construct($jwt)
+    public function __construct($jwt, $isProduction = true)
     {
-        parent::__construct($this->url, $jwt);
+        parent::__construct("recurrence", $jwt, $isProduction);
     }
 
     public function send($data)

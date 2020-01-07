@@ -5,12 +5,10 @@ require_once 'TransactionRequest.php';
 class CreditCardRequest extends TransactionRequest
 {
 
-    private $jwt;
-    private $url = "https://dev-api.portalsoulpay.com.br/api/v1/transaction";
 
-    public function __construct($jwt)
+    public function __construct($jwt, $isProduction = true)
     {
-        parent::__construct($this->url, $jwt);
+        parent::__construct("transaction", $jwt,$isProduction);
     }
 
     public function send($data)

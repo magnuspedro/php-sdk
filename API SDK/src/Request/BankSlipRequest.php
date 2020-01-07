@@ -5,12 +5,9 @@ require_once 'TransactionRequest.php';
 class BankSlipRequest extends TransactionRequest
 {
 
-    private $jwt;
-    private $url = "https://dev-api.portalsoulpay.com.br/api/v1/bankSlip";
-
-    public function __construct($jwt)
-    {
-        parent::__construct($this->url, $jwt);
+    public function __construct($jwt,$isProduction = true)
+    {   
+        parent::__construct("bankSlip", $jwt, $isProduction);
     }
 
     public function send($data)

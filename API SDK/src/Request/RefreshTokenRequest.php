@@ -5,12 +5,9 @@ require_once 'TokenRefreshRequest.php';
 class RefreshTokenRequest extends TokenRefreshRequest
 {
 
-    private $jwt;
-    private $url = "https://dev-api.portalsoulpay.com.br/api/v1/auth/new-refresh-token";
-
-    public function __construct($jwt)
+    public function __construct($jwt,$isProduction = true)
     {
-        parent::__construct($this->url, $jwt);
+        parent::__construct("auth/new-refresh-token", $jwt, $isProduction);
     }
 
     public function send($data)

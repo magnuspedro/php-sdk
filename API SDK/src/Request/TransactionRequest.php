@@ -7,14 +7,11 @@ abstract class TransactionRequest extends Request
 
     private $jwt;
     private $authorization;
-    private $url;
-
-    public function __construct($url, $jwt)
+    public function __construct($url, $jwt,$isProduction)
     {
-        $this->url = $url;
         $this->jwt = $jwt;
         $this->authorization = "Authorization: Bearer " . $jwt;
-        parent::__construct($this->url);
+        parent::__construct($url,$isProduction);
     }
 
     public function get($id)
